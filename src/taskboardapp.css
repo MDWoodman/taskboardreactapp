@@ -24,7 +24,8 @@ body {
 
 .app-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem auto;
+  width: 70%;
   animation: slideDown 0.6s ease-out;
 }
 
