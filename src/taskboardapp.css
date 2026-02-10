@@ -63,6 +63,15 @@ body {
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
+.app-publish-info {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 300;
+  margin: 0.8rem 0 0 0;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  font-style: italic;
+}
+
 /* ===============================
    Form - Nowoczesny formularz
    =============================== */
