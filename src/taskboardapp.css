@@ -13,7 +13,7 @@ body {
 }
 
 .app {
-  max-width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
@@ -28,7 +28,7 @@ body {
 .app-header {
   text-align: center;
   margin: 0 auto 3rem auto;
-  width: 70%;
+  width: 100%;
   animation: slideDown 0.6s ease-out;
 }
 
@@ -82,7 +82,7 @@ body {
   gap: 1rem;
   margin: 0 auto 2.5rem auto;
   padding: 2rem;
-  width: 70%;
+  width: 900px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -111,6 +111,7 @@ body {
   resize: vertical;
   transition: all 0.3s ease;
   background: #f9fafb;
+  color: #000000;
 }
 
 .task-input:focus {
@@ -123,6 +124,13 @@ body {
 
 .task-input::placeholder {
   color: #a0aec0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
 }
 
 .task-button {
@@ -140,7 +148,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  align-self: flex-end;
+  flex: 1;
 }
 
 .task-button:hover {
@@ -231,6 +239,16 @@ body {
   font-weight: 600;
   color: #48bb78;
   background: rgba(72, 187, 120, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.task-status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.05);
   padding: 0.4rem 1rem;
   border-radius: 20px;
   white-space: nowrap;

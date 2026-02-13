@@ -4,22 +4,37 @@ import type {Task} from '../types/Task'
 interface Props 
 {
      onAdd : (task : Task) => void;
+     onClose : (ids : number[]) => void;
+     onDelete : (ids : number[]) => void;
 };
 
-function TaskForm({ onAdd }: Props){
+function TaskForm({ onAdd , onClose , onDelete }: Props){
 
     const [title , setTitle] = React.useState("");
+   
     
-    const onAddClick = (e: React.FormEvent) => {
+    const onAddClick = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        const tsk = {id:0, title, completed:false};
+        const tsk = {id:0, title, completed:false , selected:false};
         onAdd(tsk);
          //onAdd(new Task(0,title,false));
       
         setTitle("");
     }
+const onCloseTaskClick= (e : React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onClose();
+    console.log("Zakończ zaznaczone zadania");
+}
+
+const onDeleteTaskClick = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onDelete();
+    console.log("Usuń zaznaczone zadania");
+}
+
     return(
-        <form className="task-form" onSubmit={onAddClick}>
+        <form className="task-form" >
             <textarea 
                 className="task-input" 
                 rows={3} 
@@ -27,9 +42,13 @@ function TaskForm({ onAdd }: Props){
                 value={title} 
                 onChange={e=>setTitle((e.target as HTMLTextAreaElement).value)}
             />
-            <button className="task-button" type="submit">
-                <span>✨</span> Dodaj
-            </button>
+            <div className="button-group">
+                <button className="task-button" onClick={onAddClick} type="submit">
+                    <span>✨</span> Dodaj
+                </button>
+                <button className='task-button' type='button' onClick={onCloseTaskClick}>Zakończ zaznaczone</button>
+                <button className='task-button' type='button' onClick={onDeleteTaskClick}>Usuń zaznaczone</button>
+            </div>
         </form>
     )
 }
