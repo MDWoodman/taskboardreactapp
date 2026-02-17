@@ -4,5 +4,6 @@ export interface Task {
     title: string;
     completed : boolean;
     selected : boolean;
+    visible : boolean;
 
 }

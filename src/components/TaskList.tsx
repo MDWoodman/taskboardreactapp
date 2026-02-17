@@ -14,7 +14,8 @@ function TaskList({tasks, onCheckedChange} : Props){
 
     const items = []
     for(let i=0 ; i < tasks.length ; i++){
-        items.push(<TaskItem key={tasks[i].id} task={tasks[i]} ids={[]} onCheckedChange={onCheckedChange}></TaskItem>)
+        if(tasks[i].visible==true)
+             items.push(<TaskItem key={tasks[i].id} task={tasks[i]} ids={[]} onCheckedChange={onCheckedChange}></TaskItem>)
        
     }
 

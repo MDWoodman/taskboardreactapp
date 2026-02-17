@@ -1,4 +1,5 @@
 
+import React from 'react';
 import './taskboardapp.css';
 import Layout from "./components/Layout";
 import Header from "./components/Header";
@@ -6,6 +7,7 @@ import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import type {Task} from './types/Task';
 import { useState } from 'react';
+import FilterTasks from './components/FilterTasks';
 
 
 function TaskBoardApp() {
@@ -20,7 +22,7 @@ const addTask=(task : Task) => {
   var completed = false;
 
 
-  var newTask : Task = {id,title,completed,selected:false};
+  var newTask : Task = {id,title,completed,selected:false , visible:true};
   setTaskState([...tasks , newTask]);
   
 };
@@ -51,14 +53,39 @@ const onToggleSelected = (id: number, checked: boolean) => {
   setTaskState(updatedTasks);
 };
 
+const onFilterChange=(filter : string) => 
+{
+  console.log("Wybrany filtr: " + filter);
+  const updatatedTasks = tasks.map(task => 
+    {
+      if(filter=="all") return {...task , visible : true}
+      if(filter=="open") 
+           if(task.completed==true) return {...task , visible : false }
+           else return {...task , visible : true }
+      if(filter=="ended") 
+            if(task.completed==false) return {...task , visible : false }
+            else return {...task , visible : true }
+      return task;
+    });
+    
+  setTaskState(updatatedTasks);
+  setFilter(filter);
+};
+
+
+ 
+
+const [filter , setFilter] = React.useState('all');
+
   return (
     <Layout>
       <Header title="TaskBoard"  description="Zarzadzanie zadaniami na wesoło"></Header>
       <TaskForm onAdd={addTask} onClose={onCloseTask} onDelete={onDeleteTask}></TaskForm>
+      <FilterTasks filter={filter} onFilterChangeProps={onFilterChange}></FilterTasks>
       <TaskList tasks={tasks} onCheckedChange={onToggleSelected}></TaskList>
 
     </Layout>
   );
-}
 
+}
 export default TaskBoardApp;

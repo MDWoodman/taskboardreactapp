@@ -15,7 +15,7 @@ function TaskItem({task , onCheckedChange} : Props)
         setIsChecked(event.target.checked);
     };
     return (
-        <li className={`task-item ${task.completed ? 'completed' : ''}`}>
+        <li className={ `task-item ${task.completed ? 'completed' : ''}  ${task.visible ? '' : 'hidden'}`}>
             <div className="task-content">
                 <span className="task-id">#{task.id}</span>
                 <span className="task-title">{task.title}</span>
